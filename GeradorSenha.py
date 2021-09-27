@@ -62,8 +62,21 @@ def todos_os_caracteres():
     return lista1
 
 
+print('Selecione a forma que a senha deve ser gerada.')
+
+selecao = input('(l) = letras / (n) = números / (ln) = letras e números / (lns) = letras, números e simbolos: ')
+
+
 lista1 = []
 quantidade_caracteres = int(input('Número de caracteres da senha: '))
-senha_lista = todos_os_caracteres()
+
+if selecao == 'l':
+    senha_lista = somente_numeros()
+elif selecao == 'n':
+    senha_lista = somente_numeros()
+elif selecao == 'lns':
+    senha_lista = todos_os_caracteres()
+
+
 senhagerada = ''.join(senha_lista)
 print(senhagerada)
