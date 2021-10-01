@@ -1,5 +1,6 @@
 import random
 import string
+import tkinter
 
 
 def numero_aleatorio():
@@ -23,6 +24,7 @@ def escolha_tipo_letra_e_numero():
 
 
 def somente_numeros():
+    lista1 = []
     quantidade_caracteres = int(input('Número de caracteres da senha: '))
     for quantidade in range(quantidade_caracteres):
         lista1.append(numero_aleatorio())
@@ -30,6 +32,7 @@ def somente_numeros():
 
 
 def somente_letras():
+    lista1 = []
     quantidade_caracteres = int(input('Número de caracteres da senha: '))
     for quantidade in range(quantidade_caracteres):
         lista1.append(letra_aleatoria())
@@ -37,6 +40,7 @@ def somente_letras():
 
 
 def somente_letra_e_numeros():
+    lista1 = []
     quantidade_caracteres = int(input('Número de caracteres da senha: '))
     for quantidade in range(quantidade_caracteres):
         seletor = escolha_tipo_letra_e_numero()
@@ -48,6 +52,7 @@ def somente_letra_e_numeros():
 
 
 def todos_os_caracteres():
+    lista1 = []
     quantidade_caracteres = int(input('Número de caracteres da senha: '))
     for quantidade in range(quantidade_caracteres):
         seletor = escolha_tipo()
@@ -60,26 +65,29 @@ def todos_os_caracteres():
     return lista1
 
 
+def selecao_de_tipo(selecao):
+    if selecao == 'l':
+        senha_lista = somente_letras()
+    elif selecao == 'n':
+        senha_lista = somente_numeros()
+    elif selecao == 'ln':
+        senha_lista = somente_letra_e_numeros()
+    elif selecao == 'lns':
+        senha_lista = todos_os_caracteres()
+    else:
+        print('Valor invalido')
+        exit()
+
+    return senha_lista
+
+
 print('Selecione a forma que a senha deve ser gerada.')
 
-selecao = input('(l) = letras / (n) = números / (ln) = letras e números / (lns) = letras, números e simbolos: ').lower()
+tipo_escolhido = input(
+    '(l) = letras / (n) = números / (ln) = letras e números / (lns) = letras, números e simbolos: ').lower()
 
-lista1 = []
+lista_gerada = selecao_de_tipo(tipo_escolhido)
 
-if selecao == 'l':
-    senha_lista = somente_letras()
-elif selecao == 'n':
-    senha_lista = somente_numeros()
-elif selecao == 'lns':
-    senha_lista = todos_os_caracteres()
-else:
-    print('Valor invalido')
-    exit()
+senhagerada = ''.join(lista_gerada)
 
-
-
-
-
-
-senhagerada = ''.join(senha_lista)
 print(senhagerada)
